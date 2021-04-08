@@ -44,7 +44,7 @@ W3W <- {
 
     /* API details: https://developer.what3words.com/public-api/docs#overview */
 
-    VERSION = "0.0.1",
+    VERSION = "0.0.2",
 
     /* PRIVATE PROPERTIES */
     _apiKey = null,
@@ -84,30 +84,32 @@ W3W <- {
     */
     getWords = function(coords = null, getGeoJson = false) {
 
-        if (coords == null) {
+        if (coords == null ||
+            (typeof coords == "string" && coords.len() == 0) ||
+            (typeof coords == "array"  && coords.len() < 2)) {
+                _cb({ "error": W3W_ERRS.BAD_COORDS, "errcode": 400 });
+                return;
+        }
+
+        // NOTE Co-ordinates expected as LAT,LNG
+        local params = "?coordinates=";
+        local paramsError = true;
+
+        if (typeof coords == "string") {
+            params += coords;
+            paramsError = _checkLat(coords);
+        } else if (typeof coords == "array") {
+            // Use a 'try' in case string conversion fails
+            try {
+                params += (coords[0].tostring() + "," + coords[1].tostring());
+                paramsError = _checkLat(coords);
+            } catch (err) { }
+        }
+
+        // Bail on error from above
+        if (paramsError) {
             _cb({ "error": W3W_ERRS.BAD_COORDS, "errcode": 400 });
             return;
-        }
-
-        // NOTE Co-ordinates expected as LNG,LAT
-        local params = "?coordinates=";
-        if (typeof coords == "string") {
-            if (coords.len() > 0) {
-                params += coords;
-            } else {
-                _cb({ "error": W3W_ERRS.BAD_COORDS, "errcode": 400 });
-                return;
-            }
-
-        }
-
-        if (typeof coords == "array") {
-            if (coords.len() >= 2) {
-                params += (coords[1].tostring() + "," + coords[0].tostring());
-            } else {
-                _cb({ "error": W3W_ERRS.BAD_COORDS, "errcode": 400 });
-                return;
-            }
         }
 
         // Select response JSON type
@@ -117,15 +119,25 @@ W3W <- {
         _send(params);
     },
 
-    getCoords = function(words = null) {
+    /**
+     * Get the coordinates indicated by the supplied three words.
+     *
+     * @param {string/array} coords  - The three words. Pass as a string, eg. "fellow.green.oak"
+     *                                 or an array, eg. '["fellow", "green", "oak"]'
+     * @param {bool}         geoJson - Should the request return GeoJson. Default: false.
+     *
+    */
+    getCoords = function(words = null, getGeoJson = false) {
         if (words == null ||
             (typeof words == "string" && words.len() == 0) ||
-            (typeof words == "array" && words.len() != 3)) {
+            (typeof words == "array"  && words.len() != 3)) {
                 _cb({ "error": W3W_ERRS.BAD_WORDS, "errcode": 400 });
                 return;
         }
 
-        local params = "?";
+        local params = "?words=";
+        local paramsError = true;
+
         if (typeof words == "array") {
             // Check the words in the array are strings too
             foreach(item in words) {
@@ -135,9 +147,26 @@ W3W <- {
                 }
             }
             params += (words[0] + "." + words[1] + "." + words[2]);
-        } else {
-            params += words;
+            paramsError = false;
+        } else if (typeof words == "string") {
+            if (split(words, ".").len() == 3) {
+                params += words;
+                paramsError = false;
+            } else if (split(words, "・").len() == 3) {
+                // Deal with coding of Japanese middle dot by removing it
+                local parts = split(words, "・");
+                params += (parts[0] + "." + parts[1] + "." + parts[2]);
+                paramsError = false;
+            }
         }
+
+        if (paramsError) {
+            _cb({ "error": W3W_ERRS.BAD_WORDS, "errcode": 400 });
+            return;
+        }
+
+        // Select response JSON type
+        if (typeof getGeoJson == "boolean" && getGeoJson) params += "&format=geojson";
 
         // Assemble and make the request
         _send(params, false);
@@ -207,5 +236,31 @@ W3W <- {
         };
 
         _cb(errData);
+    },
+
+    /**
+     * Internal latitide coordinate checker.
+     *
+     * @private
+     *
+     * @param {array/string} coords - The app-supplied coordinates.
+     *
+    */
+    _checkLat = function(coords) {
+        if (typeof coords == "array") {
+            if (coords[0].tofloat() <= 90.0 && coords[0].tofloat() >= -90.0) {
+                return false;
+            }
+        } else if (typeof coords == "string") {
+            local parts = split(coords, ",");
+            try {
+                if (parts[0].tofloat() <= 90.0 && parts[1].tofloat() >= -90.0) {
+                    return false;
+                }
+            } catch (err) { }
+        }
+
+        return true;
     }
+
 }

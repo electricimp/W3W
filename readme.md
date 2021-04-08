@@ -1,8 +1,10 @@
-# What Three Words 0.0.1
+# What Three Words 0.0.2
 
 [What Three Words](https://what3words.com/) (W3W) is a navigation service which aims to make geographical locations more manageable — for humans, at least. The World has been segmented into a grid of squares, each one represented by a unique combination of three words. For example, the Statue of Liberty is located within the square referenced by the words `chief.ramp.songs`.
 
 Multiple languages are supported for the geo-reference words.
+
+**This library is in development and not yet available through `#require`. Please paste the library code into your application**
 
 ## Library Usage
 
@@ -54,6 +56,8 @@ W3W.init(settings);
 W3W.getCoords(savedWords);
 ```
 
+## Library Functions
+
 ### init(*settings*)
 
 Configure the library. You must call this before making use of the library’s other functions, including values for *apiKey* and *callback*.
@@ -92,7 +96,7 @@ Returned data or error are posted via the callback. Returned data is in the form
 
 Nothing.
 
-#### Example
+#### Examples
 
 ```squirrel
 W3W.getWords("51.551208,-0.1348044");
@@ -116,7 +120,7 @@ Returned data or error are posted via the callback. Returned data is in the form
 
 Nothing.
 
-#### Example
+#### Examples
 
 ```squirrel
 W3W.getCoords("chief.ramp.songs");
@@ -125,5 +129,7 @@ W3W.getCoords(["chief", "ramp", "songs"]);
 
 ## Release Notes
 
+* 0.0.2
+    * Improve code, error checks.
 * 0.0.1
     * Initial release.

@@ -27,7 +27,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST BAD COORDS CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": "TEST-FARTZ",
+                "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -43,10 +43,10 @@ class W3WTestCase extends ImpTestCase {
 
     function testGetWordsBadArrayCoords() {
 
-        // TEST BAD COORDS CORRECTLY TRAPPED
+        // TEST BAD COORD ARRAY CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": "TEST-FARTZ",
+                "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -62,10 +62,10 @@ class W3WTestCase extends ImpTestCase {
 
     function testGetWordsBadStringCoords() {
 
-        // TEST BAD COORDS CORRECTLY TRAPPED
+        // TEST BAD COORD STRING CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": "TEST-FARTZ",
+                "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -79,9 +79,28 @@ class W3WTestCase extends ImpTestCase {
         }.bindenv(this));
     }
 
-    function testGetWordsBadLattiCoords() {
+    function testGetWordsNullStringCoords() {
 
-        // TEST BAD COORDS CORRECTLY TRAPPED
+        // TEST NULL COORD STRING CORRECTLY TRAPPED
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": "ZARNIW00P",
+                "callback": function(result) {
+                    if ("error" in result) {
+                        resolve(result.error + ", code: " + result.errcode);
+                    } else {
+                        reject();
+                    }
+                }.bindenv(this)
+            });
+
+            W3W.getWords();
+        }.bindenv(this));
+    }
+
+    function testGetWordsBadLatitudeCoords() {
+
+        // TEST BAD LATITUDE COORD CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
                 "apiKey": API_KEY,
@@ -98,12 +117,12 @@ class W3WTestCase extends ImpTestCase {
         }.bindenv(this));
     }
 
-    function testGetWordsBadKey() {
+    function testGetWordsBadApiKey() {
 
         // TEST BAD API KEY CORRECTLY PRESENTED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": "TEST-FARTZ",
+                "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -133,13 +152,12 @@ class W3WTestCase extends ImpTestCase {
             });
 
             W3W.getWords("51.551208,-0.1348044");
-            //W3W.getWords("51.330677,00.0080789");
         }.bindenv(this));
     }
 
-    function testGetWordsGoodKeyBadLang() {
+    function testGetWordsGoodKeyBadLanguage() {
 
-        // TEST CORRECT REQUEST AND RESPONSE
+        // TEST BAD LANGUAGE SPECIFIER CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
                 "apiKey": API_KEY,
@@ -157,12 +175,12 @@ class W3WTestCase extends ImpTestCase {
         }.bindenv(this));
     }
 
-    function testGetCoordsNullWords() {
+    function testGetCoordsNullString() {
 
-        // TEST BAD WORDS STRING
+        // TEST NO WORDS STRING CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": "TEST-FARTZ",
+                "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -178,10 +196,10 @@ class W3WTestCase extends ImpTestCase {
 
     function testGetCoordsBadString() {
 
-        // TEST BAD WORDS STRING
+        // TEST BAD WORDS STRING CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": "TEST-FARTZ",
+                "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -195,12 +213,50 @@ class W3WTestCase extends ImpTestCase {
         }.bindenv(this));
     }
 
-    function testGetCoordsBadArray() {
+    function testGetCoordsBadStringSeparator() {
 
-        // TEST BAD WORDS ARRAY
+        // TEST BAD WORDS STRING CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": "TEST-FARTZ",
+                "apiKey": "ZARNIW00P",
+                "callback": function(result) {
+                    if ("error" in result) {
+                        resolve(result.error + ", code: " + result.errcode);
+                    } else {
+                        reject();
+                    }
+                }
+            });
+
+            W3W.getCoords("wilson,picket,motown");
+        }.bindenv(this));
+    }
+
+    function testGetCoordsBadStringTooShort() {
+
+        // TEST BAD WORDS STRING CORRECTLY TRAPPED
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": "ZARNIW00P",
+                "callback": function(result) {
+                    if ("error" in result) {
+                        resolve(result.error + ", code: " + result.errcode);
+                    } else {
+                        reject();
+                    }
+                }
+            });
+
+            W3W.getCoords("wilson.picket");
+        }.bindenv(this));
+    }
+
+    function testGetCoordsBadArrayEmpty() {
+
+        // TEST BAD WORDS ARRAY CORRECTLY TRAPPED
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -216,10 +272,10 @@ class W3WTestCase extends ImpTestCase {
 
     function testGetCoordsBadArrayWords() {
 
-        // TEST BAD WORDS ARRAY
+        // TEST BAD WORDS ARRAY CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": "TEST-FARTZ",
+                "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -233,26 +289,7 @@ class W3WTestCase extends ImpTestCase {
         }.bindenv(this));
     }
 
-    function testGetCoordsBadArrayWords() {
-
-        // TEST BAD WORDS ARRAY
-        return Promise(function(resolve, reject) {
-            W3W.init({
-                "apiKey": "TEST-FARTZ",
-                "callback": function(result) {
-                    if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
-                    } else {
-                        reject();
-                    }
-                }
-            });
-
-            W3W.getCoords(["blue","cheese",true]);
-        }.bindenv(this));
-    }
-
-    function testGetCoordsBadWords() {
+    function testGetCoordsGoodArrayBadWords() {
 
         // TEST BAD WORDS ARRAY
         return Promise(function(resolve, reject) {
@@ -273,7 +310,53 @@ class W3WTestCase extends ImpTestCase {
 
     function testGetCoordsGoodData01() {
 
-        // TEST BAD WORDS ARRAY
+        // TEST CORRECT REQUEST AND RESPONSE
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": API_KEY,
+                "callback": function(result) {
+                    if ("error" in result) {
+                        reject(result.error + ", code: " + result.errcode);
+                    } else {
+                        if ("words" in result && "coords" in result) {
+                            resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                        } else {
+                            reject("Missing keys in data");
+                        }
+                    }
+                }
+            });
+
+            W3W.getCoords("planet.dime.online");
+        }.bindenv(this));
+    }
+
+    function testGetCoordsGoodData02() {
+
+        // TEST CORRECT REQUEST AND RESPONSE
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": API_KEY,
+                "callback": function(result) {
+                    if ("error" in result) {
+                        reject(result.error + ", code: " + result.errcode);
+                    } else {
+                        if ("words" in result && "coords" in result) {
+                            resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                        } else {
+                            reject("Missing keys in data");
+                        }
+                    }
+                }
+            });
+
+            W3W.getCoords("planet・dime・online");
+        }.bindenv(this));
+    }
+
+    function testGetWordsGoodData01() {
+
+        // TEST CORRECT REQUEST AND RESPONSE
         return Promise(function(resolve, reject) {
             W3W.init({
                 "apiKey": API_KEY,
@@ -294,9 +377,9 @@ class W3WTestCase extends ImpTestCase {
         }.bindenv(this));
     }
 
-    function testGetCoordsGoodData02() {
+    function testGetWordsGoodData02() {
 
-        // TEST BAD WORDS ARRAY
+        // TEST CORRECT REQUEST AND RESPONSE
         return Promise(function(resolve, reject) {
             W3W.init({
                 "apiKey": API_KEY,

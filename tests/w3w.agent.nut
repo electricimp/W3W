@@ -31,10 +31,19 @@ enum W3W_LIB {
     API_GET_COORDS_EP = "convert-to-coordinates"
 }
 
+// NOTE The following errors and codes are not comprehensive.
+//      They list the errors the library passes back, not all
+//      of those thart W3W may return
 enum W3W_ERRS {
     BAD_COORDS        = "[W3W] Invalid co-ordinates",
     BAD_WORDS         = "[W3W] Invalid words",
     BAD_KEY           = "[W3W] Invalid API key"
+}
+
+enum W3W_ERR_CODES {
+    BAD_COORDS        = "BadCoordinates",
+    BAD_WORDS         = "BadWords",
+    BAD_KEY           = "MissingKey",
 }
 
 /*
@@ -44,7 +53,7 @@ W3W <- {
 
     /* API details: https://developer.what3words.com/public-api/docs#overview */
 
-    VERSION = "0.0.2",
+    VERSION = "0.0.3",
 
     /* PRIVATE PROPERTIES */
     _apiKey = null,
@@ -71,7 +80,9 @@ W3W <- {
         _lang   = ("language" in opts && typeof opts.language == "string") ? opts.language : "en";
 
         if (_cb == null) throw "W3W requires a callback";
-        if (_apiKey == null) _cb({ "error": W3W_ERRS.BAD_KEY, "errcode": 401 });
+        if (_apiKey == null) _cb({ "error": W3W_ERRS.BAD_KEY,
+                                   "errcode": W3W_ERR_CODES.BAD_KEY,
+                                   "statuscode": 401 });
     },
 
     /**
@@ -87,7 +98,9 @@ W3W <- {
         if (coords == null ||
             (typeof coords == "string" && coords.len() == 0) ||
             (typeof coords == "array"  && coords.len() < 2)) {
-                _cb({ "error": W3W_ERRS.BAD_COORDS, "errcode": 400 });
+                _cb({ "error": W3W_ERRS.BAD_COORDS,
+                      "errcode": W3W_ERR_CODES.BAD_COORDS,
+                      "statuscode": 400 });
                 return;
         }
 
@@ -101,14 +114,20 @@ W3W <- {
         } else if (typeof coords == "array") {
             // Use a 'try' in case string conversion fails
             try {
-                params += (coords[0].tostring() + "," + coords[1].tostring());
+                for (local i = 0 ; i < 2 ; i++) {
+                    // Use 'format()' for floats rather than '.tostring()' for better precision
+                    params += (typeof coords[i] == "string") ? coords[i] : format("%.6f", coords[i]);
+                    if (i == 0) params += ",";
+                }
                 paramsError = _checkLat(coords);
             } catch (err) { }
         }
 
         // Bail on error from above
         if (paramsError) {
-            _cb({ "error": W3W_ERRS.BAD_COORDS, "errcode": 400 });
+            _cb({ "error": W3W_ERRS.BAD_COORDS,
+                  "errcode": W3W_ERR_CODES.BAD_COORDS,
+                   "statuscode": 400 });
             return;
         }
 
@@ -131,7 +150,9 @@ W3W <- {
         if (words == null ||
             (typeof words == "string" && words.len() == 0) ||
             (typeof words == "array"  && words.len() != 3)) {
-                _cb({ "error": W3W_ERRS.BAD_WORDS, "errcode": 400 });
+                _cb({ "error": W3W_ERRS.BAD_WORDS,
+                      "errcode": W3W_ERR_CODES.BAD_WORDS,
+                      "statuscode": 400 });
                 return;
         }
 
@@ -142,7 +163,9 @@ W3W <- {
             // Check the words in the array are strings too
             foreach(item in words) {
                 if (typeof item != "string") {
-                    _cb({ "error": W3W_ERRS.BAD_WORDS, "errcode": 400 });
+                    _cb({ "error": W3W_ERRS.BAD_WORDS,
+                          "errcode": W3W_ERR_CODES.BAD_WORDS,
+                          "statuscode": 400 });
                     return;
                 }
             }
@@ -161,7 +184,9 @@ W3W <- {
         }
 
         if (paramsError) {
-            _cb({ "error": W3W_ERRS.BAD_WORDS, "errcode": 400 });
+            _cb({ "error": W3W_ERRS.BAD_WORDS,
+                  "errcode": W3W_ERR_CODES.BAD_WORDS,
+                  "statuscode": 400 });
             return;
         }
 
@@ -226,7 +251,7 @@ W3W <- {
     */
     _processError = function(resp) {
 
-        if (_debug) server.log("[W3W] " + resp.body + "(code: " + resp.statuscode + ")");
+        if (_debug) server.log("[W3W] " + resp.body + "(status code: " + resp.statuscode + ")");
         local err = http.jsondecode(resp.body);
         local errData = {"statuscode": resp.statuscode};
 

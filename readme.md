@@ -76,9 +76,11 @@ Nothing.
 
 ### getWords(*coordinates[, getGeoJson]*)
 
-Find the three-word representation of the supplied latitude and longitude co-ordinates. Optionally, request the results are returned in [GeoJson](https://geojson.org) format rather than W3W format.
+Find the three-word representation of the supplied latitude and longitude co-ordinates. The co-ordinates can be passed in a string, an array of strings, or an array of floats. Take care with the latter: because of the rounding implicit in Squirrel’s conversion of floats to strings (required for transmission to W3W) you may lose precision and so may not receive the three words you expect.
 
-Returned data or error are posted via the callback. Returned data is in the form of a table with the following keys:
+Optionally, request the results are returned in [GeoJson](https://geojson.org) format rather than W3W’s JSON format.
+
+Returned data or errors are posted via the callback. Returned data is in the form of a table with the following keys:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -104,11 +106,11 @@ W3W.getWords(["51.551208", "-0.1348044"]);
 W3W.getWords([51.551208, -0.1348044]);
 ```
 
-### getCoords(*words*)
+### getCoords(*words[, getGeoJson]*)
 
-Get the latitude and longitude co-ordinates of the supplied three words.
+Get the latitude and longitude co-ordinates of the supplied three words. Optionally, request the results are returned in [GeoJson](https://geojson.org) format rather than W3W’s JSON format.
 
-Returned data or error are posted via the callback. Returned data is in the form of a table with the keys listed above under [*getWords()*](#getwordscoordinates-getgeojson)
+Returned data or errors are posted via the callback. Returned data is in the form of a table with the keys listed above under [*getWords()*](#getwordscoordinates-getgeojson)
 
 #### Parameters
 
@@ -129,6 +131,9 @@ W3W.getCoords(["chief", "ramp", "songs"]);
 
 ## Release Notes
 
+* 0.0.3
+    * Match internal error reporting to W3W spec.
+    * Correct precision on float->string conversion.
 * 0.0.2
     * Improve code, error checks.
 * 0.0.1

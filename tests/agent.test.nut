@@ -30,7 +30,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -49,7 +49,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -68,7 +68,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -87,7 +87,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -125,7 +125,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -144,7 +144,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
-                        reject(result.error + ", code: " + result.errcode);
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         resolve(result.words);
                     }
@@ -163,7 +163,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject(result.words);
                     }
@@ -183,7 +183,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -202,7 +202,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -221,7 +221,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -240,7 +240,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -259,7 +259,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -278,7 +278,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": "ZARNIW00P",
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -297,7 +297,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
-                        resolve(result.error + ", code: " + result.errcode);
+                        resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         reject();
                     }
@@ -316,7 +316,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
-                        reject(result.error + ", code: " + result.errcode);
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         if ("words" in result && "coords" in result) {
                             resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
@@ -339,7 +339,7 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
-                        reject(result.error + ", code: " + result.errcode);
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         if ("words" in result && "coords" in result) {
                             resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
@@ -362,10 +362,18 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
-                        reject(result.error + ", code: " + result.errcode);
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         if ("words" in result && "coords" in result) {
-                            resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                            if ("words" in result && "coords" in result) {
+                            if (result.words == "suffice.model.rigid") {
+                                resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                            } else {
+                                reject("Incorrect location: loss of co-ordinate precision");
+                            }
+                        } else {
+                                reject("Incorrect location: loss of co-ordinate precision");
+                            }
                         } else {
                             reject("Missing keys in data");
                         }
@@ -373,7 +381,8 @@ class W3WTestCase extends ImpTestCase {
                 }
             });
 
-            W3W.getWords("51.55123,-0.13460");
+            // Co-ordinates as string
+            W3W.getWords("51.56278,-0.14045");
         }.bindenv(this));
     }
 
@@ -385,10 +394,14 @@ class W3WTestCase extends ImpTestCase {
                 "apiKey": API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
-                        reject(result.error + ", code: " + result.errcode);
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
                     } else {
                         if ("words" in result && "coords" in result) {
-                            resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                            if (result.words == "suffice.model.rigid") {
+                                resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                            } else {
+                                reject("Incorrect location: loss of co-ordinate precision");
+                            }
                         } else {
                             reject("Missing keys in data");
                         }
@@ -396,7 +409,64 @@ class W3WTestCase extends ImpTestCase {
                 }
             });
 
-            W3W.getWords("51.56278,-0.14045");
+            // Co-ordinates as array of strings
+            W3W.getWords(["51.56278","-0.14045"]);
+        }.bindenv(this));
+    }
+
+    function testGetWordsGoodData03() {
+
+        // TEST CORRECT REQUEST AND RESPONSE
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": API_KEY,
+                "callback": function(result) {
+                    if ("error" in result) {
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
+                    } else {
+                        if ("words" in result && "coords" in result) {
+                            if (result.words == "suffice.model.rigid") {
+                                resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                            } else {
+                                reject("Incorrect location: loss of co-ordinate precision");
+                            }
+                        } else {
+                            reject("Missing keys in data");
+                        }
+                    }
+                }
+            });
+
+            // Co-ordinates as array of floats
+            W3W.getWords([51.56278,-0.14045]);
+        }.bindenv(this));
+    }
+
+    function testGetWordsGoodData04() {
+
+        // TEST CORRECT REQUEST AND RESPONSE
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": API_KEY,
+                "callback": function(result) {
+                    if ("error" in result) {
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
+                    } else {
+                        if ("words" in result && "coords" in result) {
+                            if (result.words == "overnight.velocity.washable") {
+                                resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                            } else {
+                                reject("Incorrect location: loss of co-ordinate precision");
+                            }
+                        } else {
+                            reject("Missing keys in data");
+                        }
+                    }
+                }
+            });
+
+            // Co-ordinates as ints
+            W3W.getWords([51,0]);
         }.bindenv(this));
     }
 

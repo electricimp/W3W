@@ -1,4 +1,4 @@
-# What Three Words 0.0.2
+# What Three Words 0.0.3
 
 [What Three Words](https://what3words.com/) (W3W) is a navigation service which aims to make geographical locations more manageable — for humans, at least. The World has been segmented into a grid of squares, each one represented by a unique combination of three words. For example, the Statue of Liberty is located within the square referenced by the words `chief.ramp.songs`.
 

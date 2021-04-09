@@ -132,7 +132,7 @@ W3W <- {
         }
 
         // Select response JSON type
-        if (typeof getGeoJson == "boolean" && getGeoJson) params += "&format=geojson";
+        if (typeof getGeoJson == "bool" && getGeoJson) params += "&format=geojson";
 
         // Assemble and make the request
         _send(params);
@@ -191,7 +191,7 @@ W3W <- {
         }
 
         // Select response JSON type
-        if (typeof getGeoJson == "boolean" && getGeoJson) params += "&format=geojson";
+        if (typeof getGeoJson == "bool" && getGeoJson) params += "&format=geojson";
 
         // Assemble and make the request
         _send(params, false);
@@ -234,9 +234,11 @@ W3W <- {
 
         // Return the JSON response for procesing by host
         local decode = http.jsondecode(resp.body);
-        local data = { "words": decode.words,
-                       "coords": { "latitude": decode.coordinates.lat,
-                                   "longitude": decode.coordinates.lng },
+        server.log(resp.body);
+        local isGeoJson = ("features" in decode);
+        local data = { "words": (isGeoJson ? decode.features[0].properties.words : decode.words),
+                       "coords": { "latitude": (isGeoJson ? decode.features[0].geometry.coordinates[1] : decode.coordinates.lat),
+                                   "longitude": (isGeoJson ? decode.features[0].geometry.coordinates[0] : decode.coordinates.lng) },
                        "rawdata": decode };
         _cb(data);
     },

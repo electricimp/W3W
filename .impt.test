@@ -1,0 +1,13 @@
+{
+  "deviceGroupId": "60a1471f-27b9-0990-7955-620444d00c29",
+  "deviceGroupName": "impFarm H",
+  "timeout": 30,
+  "stopOnFail": false,
+  "allowDisconnect": false,
+  "builderCache": false,
+  "testFiles": [
+    "*.test.nut",
+    "tests/**/*.test.nut"
+  ],
+  "agentFile": "w3w.agent.lib.nut"
+}

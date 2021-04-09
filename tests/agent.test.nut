@@ -1,7 +1,32 @@
-class W3WTestCase extends ImpTestCase {
+// MIT License
+//
+// Copyright 2021 Twilio
+//
+// SPDX-License-Identifier: MIT
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+// EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
+// OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+// ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+// OTHER DEALINGS IN THE SOFTWARE.
+//
 
-    /* DO NOT ADD TO REPO! */
-    API_KEY = "<YOUR_API_KEY>";
+/* DO NOT ADD YOUR CREDENTIALS TO REPO! */
+const W3W_API_KEY = "@{W3W_API_KEY}";
+
+class W3WTestCase extends ImpTestCase {
 
     function testInit() {
 
@@ -103,7 +128,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST BAD LATITUDE COORD CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode);
@@ -132,7 +157,7 @@ class W3WTestCase extends ImpTestCase {
                 }
             });
 
-            W3W.getWords("51.551208,-0.1348044");
+            W3W.getWords("51.551208,-0.1348044", true);
         }.bindenv(this));
     }
 
@@ -141,7 +166,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST CORRECT REQUEST AND RESPONSE
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -160,7 +185,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST BAD LANGUAGE SPECIFIER CORRECTLY TRAPPED
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -294,7 +319,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST BAD WORDS ARRAY
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         resolve(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -313,7 +338,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST CORRECT REQUEST AND RESPONSE
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -336,7 +361,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST CORRECT REQUEST AND RESPONSE
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -359,7 +384,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST CORRECT REQUEST AND RESPONSE
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -391,7 +416,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST CORRECT REQUEST AND RESPONSE
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -419,7 +444,7 @@ class W3WTestCase extends ImpTestCase {
         // TEST CORRECT REQUEST AND RESPONSE
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -444,10 +469,10 @@ class W3WTestCase extends ImpTestCase {
 
     function testGetWordsGoodData04() {
 
-        // TEST CORRECT REQUEST AND RESPONSE
+        // TEST CORRECT REQUEST AND RESPONSE -- IN GEO JSON
         return Promise(function(resolve, reject) {
             W3W.init({
-                "apiKey": API_KEY,
+                "apiKey": W3W_API_KEY,
                 "callback": function(result) {
                     if ("error" in result) {
                         reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
@@ -467,6 +492,66 @@ class W3WTestCase extends ImpTestCase {
 
             // Co-ordinates as ints
             W3W.getWords([51,0]);
+        }.bindenv(this));
+    }
+
+    function testGetWordsGoodDataGeoJson01() {
+
+        // TEST CORRECT REQUEST AND RESPONSE
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": W3W_API_KEY,
+                "callback": function(result) {
+                    if ("error" in result) {
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
+                    } else {
+                        if ("words" in result && "coords" in result) {
+                            if ("words" in result && "coords" in result) {
+                            if (result.words == "suffice.model.rigid") {
+                                resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                            } else {
+                                reject("Incorrect location: loss of co-ordinate precision");
+                            }
+                        } else {
+                                reject("Incorrect location: loss of co-ordinate precision");
+                            }
+                        } else {
+                            reject("Missing keys in data");
+                        }
+                    }
+                }
+            });
+
+            // Co-ordinates as string -- and expect response in GeoJSON format
+            W3W.getWords("51.56278,-0.14045", true);
+        }.bindenv(this));
+    }
+
+    function testGetWordsGoodDataGeoJson02() {
+
+        // TEST CORRECT REQUEST AND RESPONSE -- IN GEO JSON
+        return Promise(function(resolve, reject) {
+            W3W.init({
+                "apiKey": W3W_API_KEY,
+                "callback": function(result) {
+                    if ("error" in result) {
+                        reject(result.error + ", code: " + result.errcode + ", status: " + result.statuscode);
+                    } else {
+                        if ("words" in result && "coords" in result) {
+                            if (result.words == "suffice.model.rigid") {
+                                resolve(result.words + " -> " + result.coords.latitude + "," + result.coords.longitude);
+                            } else {
+                                reject("Incorrect location: loss of co-ordinate precision");
+                            }
+                        } else {
+                            reject("Missing keys in data");
+                        }
+                    }
+                }
+            });
+
+            // Co-ordinates as array of strings -- and expect response in GeoJSON format
+            W3W.getWords(["51.56278","-0.14045"], true);
         }.bindenv(this));
     }
 

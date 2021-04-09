@@ -1,6 +1,6 @@
 # What Three Words 0.0.3
 
-[What Three Words](https://what3words.com/) (W3W) is a navigation service which aims to make geographical locations more manageable — for humans, at least. The World has been segmented into a grid of squares, each one represented by a unique combination of three words. For example, the Statue of Liberty is located within the square referenced by the words `chief.ramp.songs`.
+[What Three Words](https://what3words.com/) (W3W) is a navigation service which aims to make geographical locations more manageable — for humans, at least. The World has been segmented into a grid of 3m x 3m squares, each one represented by a unique combination of three words. For example, the Statue of Liberty is located within the square referenced by the words `chief.ramp.songs`.
 
 Multiple languages are supported for the geo-reference words.
 
@@ -134,6 +134,9 @@ W3W.getCoords(["chief", "ramp", "songs"]);
 * 0.0.3
     * Match internal error reporting to W3W spec.
     * Correct precision on float->string conversion.
+    * Correctly request responses in GeoJSON format.
+    * Correctly parse GeoJSON responses.
+    * Add `.impt.test`.
 * 0.0.2
     * Improve code, error checks.
 * 0.0.1

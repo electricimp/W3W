@@ -76,7 +76,7 @@ Nothing.
 
 ### getWords(*coordinates[, getGeoJson]*)
 
-Find the three-word representation of the supplied latitude and longitude co-ordinates. The co-ordinates can be passed in a string, an array of strings, or an array of floats. Take care with the latter: because of the rounding implicit in Squirrel’s conversion of floats to strings (required for transmission to W3W) you may lose precision and so may not receive the three words you expect.
+Find the three-word representation of the supplied latitude and longitude co-ordinates in [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System) format. The co-ordinates can be passed in a string, an array of strings, or an array of floats. Take care with the latter: because of the rounding implicit in Squirrel’s conversion of floats to strings (required for transmission to W3W) you may lose precision and so may not receive the three words you expect.
 
 Optionally, request the results are returned in [GeoJson](https://geojson.org) format rather than W3W’s JSON format.
 

@@ -6,6 +6,8 @@ Multiple languages are supported for the geo-reference words.
 
 **This library is in development and not yet available through `#require`. Please paste the library code into your application**
 
+![Build Status](https://cse-ci.electricimp.com/app/rest/builds/buildType:(id:W3w_Build_And_Test)/statusIcon)
+
 ## Library Usage
 
 THe W3W library is implemented as a Squirrel table. As such, it has no constructor, but you will need to call its *init()* function in order to set both your W3W API key and the callback through which the library communicates with your application. You must call *init()* before calling any other W3W function.

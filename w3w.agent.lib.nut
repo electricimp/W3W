@@ -53,7 +53,7 @@ W3W <- {
 
     /* API details: https://developer.what3words.com/public-api/docs#overview */
 
-    VERSION = "0.0.3",
+    VERSION = "1.0.0",
 
     /* PRIVATE PROPERTIES */
     _apiKey = null,

@@ -1,6 +1,6 @@
 // MIT License
 //
-// Copyright 2021 Twilio
+// Copyright 2021-23 KORE Wireless
 //
 // SPDX-License-Identifier: MIT
 //
@@ -23,7 +23,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 
-/* DO NOT ADD YOUR CREDENTIALS TO REPO! */
+/* DO NOT ADD YOUR CREDENTIALS TO REPO!     */
+/* ADD AS AN ENVIROMENT VARIABLE            */
+/* eg. ` export W3W_API_KEY={YOUR_API_KEY}` */
 const W3W_API_KEY = "@{W3W_API_KEY}";
 
 class W3WTestCase extends ImpTestCase {

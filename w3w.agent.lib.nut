@@ -1,6 +1,6 @@
 /*
  * What Three Words (W3W) library
- * Copyright 2021 Twilio
+ * Copyright 2021-23 KORE Wireless
  *
  * MIT License
  * SPDX-License-Identifier: MIT

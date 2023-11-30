@@ -1,12 +1,10 @@
-# What Three Words 1.0.0
+# What Three Words 1.0.1
 
 [What Three Words](https://what3words.com/) (W3W) is a navigation service which aims to make geographical locations more manageable — for humans, at least. The World has been segmented into a grid of 3m x 3m squares, each one represented by a unique combination of three words. For example, the Statue of Liberty is located within the square referenced by the words `chief.ramp.songs`.
 
 Multiple languages are supported for the geo-reference words.
 
-**This library is in development and not yet available through `#require`. Please paste the library code into your application**
-
-![Build Status](https://cse-ci.electricimp.com/app/rest/builds/buildType:(id:W3w_Build_And_Test)/statusIcon)
+**To include this library in your project, add** `#require "w3w.agent.lib.nut:1.0.1"` **at the top of your agent code**
 
 ## Library Usage
 
@@ -22,7 +20,7 @@ When location data is returned via the callback, it contains the same informatio
 | --- | --- | --- |
 | *words* | String | The three words for the specified location |
 | *coords* | Table | The co-ordinates of the specified location. Contains the keys *latitude* and *longitude* |
-| *rawdata* | Table | All the data returned by W3W — see the [W3W API documentation]() |
+| *rawdata* | Table | All the data returned by W3W — see the [W3W API documentation](https://developer.what3words.com/public-api/docs) |
 
 An error report will contain the following keys:
 
@@ -131,17 +129,3 @@ W3W.getCoords("chief.ramp.songs");
 W3W.getCoords(["chief", "ramp", "songs"]);
 ```
 
-## Release Notes
-
-* 1.0.0
-    * Release candidate.
-* 0.0.3
-    * Match internal error reporting to W3W spec.
-    * Correct precision on float->string conversion.
-    * Correctly request responses in GeoJSON format.
-    * Correctly parse GeoJSON responses.
-    * Add `.impt.test`.
-* 0.0.2
-    * Improve code, error checks.
-* 0.0.1
-    * Initial release.

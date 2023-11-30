@@ -8,7 +8,7 @@ Multiple languages are supported for the geo-reference words.
 
 ## Library Usage
 
-THe W3W library is implemented as a Squirrel table. As such, it has no constructor, but you will need to call its *init()* function in order to set both your W3W API key and the callback through which the library communicates with your application. You must call *init()* before calling any other W3W function.
+The W3W library is implemented as a Squirrel table. As such, it has no constructor, but you will need to call its *init()* function in order to set both your W3W API key and the callback through which the library communicates with your application. You must call *init()* before calling any other W3W function.
 
 ### The Callback
 
